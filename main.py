@@ -4,11 +4,11 @@ import aiohttp
 from aiogram import Bot, types
 from aiogram.utils import exceptions
 
-API_TOKEN = '8371104768:AAE8GYjVBeF0H4fqOur9tMLe4_D4laCBRsk'
-CHANNEL_ID = '-1002053083825'
+API_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
+CHANNEL_ID = 'YOUR_CHANNEL_ID'
 CSV_FILE_PATH = 'products.csv'
 
-bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.HTML)
+bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.MARKDOWN)
 
 async def send_post(row):
     try:
@@ -27,18 +27,18 @@ async def send_post(row):
 
         post_lines = []
 
-        post_lines.append(f"🔥 מבצע מיוחד על: {product_name}")
-        price_line = f'מחיר מבצע: <a href="{buy_link}">{sale_price} ש"ח</a> (מחיר מקורי: {original_price} ש"ח)'
+post_lines.append(f"")
+        price_line = f"מחיר מבצע: [{sale_price} ש"ח]({buy_link}) (מחיר מקורי: {original_price} ש"ח)"
         post_lines.append(price_line)
-        post_lines.append(f"הנחה של {discount_percent}% 🤑")
-        post_lines.append(f"דירוג: {rating}% ⭐️")
-        post_lines.append(f"מספר הזמנות: {orders} 📦")
+post_lines.append(f"")
+post_lines.append(f"")
+post_lines.append(f"")
 
         if coupon_code:
-            post_lines.append(f"🎁 קופון לחברי הערוץ בלבד: {coupon_code}")
+post_lines.append(f"")
 
         if video_url:
-            post_lines.append(f"🎥 סרטון מוצר: {video_url}")
+post_lines.append(f"")
 
         post_lines.append(f"
 להזמנה מהירה לחצו כאן👉 [{sale_price} ש"ח]({buy_link})")
@@ -53,7 +53,7 @@ async def send_post(row):
             async with session.get(image_url) as resp:
                 if resp.status == 200:
                     photo_data = await resp.read()
-                    await await bot.send_photo(chat_id=CHANNEL_ID, photo=photo_data, caption=caption)
+                    await bot.send_photo(chat_id=CHANNEL_ID, photo=photo_data, caption=caption)
                 else:
                     await bot.send_message(chat_id=CHANNEL_ID, text=caption)
 
