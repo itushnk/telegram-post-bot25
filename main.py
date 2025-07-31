@@ -37,7 +37,7 @@ def create_post(row):
     post_lines.append(f"⭐ דירוג: {rating}%")
     post_lines.append(f"📦 מספר הזמנות: {orders}" if int(orders) >= 50 else "🆕 פריט חדש לחברי הערוץ")
 
-    price_line = f"מחיר מבצע: [{sale_price} ש"ח]({buy_link}) (מחיר מקורי: {original_price} ש"ח)"
+    price_line = f"מחיר מבצע: [{sale_price} ש\"ח]({buy_link}) (מחיר מקורי: {original_price} ש\"ח)"
     post_lines.append(price_line)
     post_lines.append(f"💸 חיסכון של {discount}%!")
     if coupon_code and coupon_code.strip():
